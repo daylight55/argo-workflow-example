@@ -1267,6 +1267,8 @@ spec:
       containers:
       - args:
         - server
+        - --secure=false # HTTPでの通信に変更
+        - --auth-mode=server # ArgoWorkflowsを動かしたいだけなので認証なしモード
         env: []
         image: quay.io/argoproj/argocli:v3.5.0
         name: argo-server
@@ -1277,7 +1279,7 @@ spec:
           httpGet:
             path: /
             port: 2746
-            scheme: HTTPS
+            scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 20
         securityContext:
